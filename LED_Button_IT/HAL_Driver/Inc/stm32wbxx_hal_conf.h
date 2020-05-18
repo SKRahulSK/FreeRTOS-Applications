@@ -64,6 +64,7 @@
 #define HAL_GPIO_MODULE_ENABLED
 #define HAL_PWR_MODULE_ENABLED
 #define HAL_RCC_MODULE_ENABLED
+#define HAL_EXTI_MODULE_ENABLED
 
 #define USE_HAL_ADC_REGISTER_CALLBACKS       0u
 #define USE_HAL_COMP_REGISTER_CALLBACKS      0u
@@ -278,6 +279,10 @@
 #ifdef HAL_RCC_MODULE_ENABLED
   #include "stm32wbxx_hal_rcc.h"
 #endif /* HAL_RCC_MODULE_ENABLED */
+
+#ifdef HAL_EXTI_MODULE_ENABLED
+  #include "stm32wbxx_hal_exti.h"
+#endif	/*HAL_EXTI_MODULE_ENABLED*/
 
 #ifdef HAL_RNG_MODULE_ENABLED
   #include "stm32wbxx_hal_rng.h"
