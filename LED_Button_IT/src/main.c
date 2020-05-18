@@ -122,7 +122,6 @@ static void prvSetupLED(void)
 
 static void prvSetupButton(void)
 {
-
 	//Using the External Button PC2
 	//Enable the clock
 	__HAL_RCC_GPIOC_CLK_ENABLE();
