@@ -47,7 +47,6 @@ void printmsg(char *msg);
 char usr_msg[250];
 
 
-
 //Mutex variable
 uint8_t USART_ACCESS_T1 = AVAILABLE;
 uint8_t USART_ACCESS_T2 = AVAILABLE;
@@ -71,8 +70,6 @@ int main(void)
 #ifndef USE_SEMIHOSTING
 	initialise_monitor_handles();
 #endif
-
-	//printf("Hello World RTOS \n");
 
 	// Enable the DWT Cycle Count Register (SEGGER Settings)
 	DWT->CTRL |= (1 << 0);
