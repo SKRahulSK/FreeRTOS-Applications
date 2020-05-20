@@ -95,7 +95,7 @@ int main(void)
 	//printf("Creating Task-1 \n");
 	xTaskCreate(vTask1Function,
 			"Task-1",
-			108,
+			configMINIMAL_STACK_SIZE,
 			NULL,
 			2,
 			&xTask1Handle);
@@ -103,7 +103,7 @@ int main(void)
 	//printf("Creating Task-2 \n");
 	xTaskCreate(vTask2Function,
 			"Task-2",
-			108,
+			configMINIMAL_STACK_SIZE,
 			NULL,
 			2,
 			&xTask2Handle);
@@ -122,16 +122,18 @@ int main(void)
 
 void vTask1Function(void *params)
 {
+	char usr_msg1[250];
+
 	while(1)
 	{
 		if( USART_ACCESS_T1 == AVAILABLE )
 		{
 			USART_ACCESS_T1 = NOT_AVAILABLE;
 
-			sprintf(usr_msg, "This is the USART message from Task-1 \r\n");
-			printmsg(usr_msg);
+			sprintf(usr_msg1, "This is the USART message from Task-1 \r\n");
+			printmsg(usr_msg1);
 
-			HAL_GPIO_TogglePin(GPIOB, LED1_PIN); // Toggle Blue LED pin
+			//HAL_GPIO_TogglePin(GPIOB, LED1_PIN); // Toggle Blue LED pin
 
 			USART_ACCESS_T2 = AVAILABLE;
 
@@ -146,20 +148,24 @@ void vTask1Function(void *params)
 
 void vTask2Function(void *params)
 {
+	char usr_msg2[250];
+
 	while(1)
 	{
 		if( USART_ACCESS_T2 == AVAILABLE )
 		{
 			USART_ACCESS_T2 = NOT_AVAILABLE;
 
-			sprintf(usr_msg, "This is the USART message from Task-2 \r\n");
-			printmsg(usr_msg);
+			sprintf(usr_msg2, "This is the USART message from Task-2 \r\n");
+			printmsg(usr_msg2);
 
 
-			HAL_GPIO_TogglePin(GPIOB, LED2_PIN); // Toggle Green LED pin
+			//HAL_GPIO_TogglePin(GPIOB, LED2_PIN); // Toggle Green LED pin
 
 			USART_ACCESS_T1 = AVAILABLE;
 
+			sprintf(usr_msg, "Task-2 is yielding \r\n");
+			printmsg(usr_msg);
 			SEGGER_SYSVIEW_Print("Task-2 is yielding");
 			traceISR_EXIT_TO_SCHEDULER(); //This is used to show the Scheduler PendSV Handler in the SEGGER systemview
 			taskYIELD();

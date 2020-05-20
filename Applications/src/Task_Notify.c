@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    Task_Notify.c
+   * @file    Task_Notify.c
   * @author  Ac6
   * @version V1.0
   * @date    18-05-2020
@@ -42,6 +42,7 @@ static void prvSetupHardware(void);
 static void prvSetupUSART(void);
 static void prvSetupLED(void);
 static void prvSetupButton(void);
+void delay(uint32_t);
 void printmsg(char *msg);
 char usr_msg[250];
 
@@ -67,6 +68,8 @@ int main(void)
 
 	// Private function defined to setup the Hardware
 	prvSetupHardware();
+	sprintf(usr_msg, "This is an example of Task Notification API \n\r");
+	printmsg(usr_msg);
 
 	// Start recording the FreeRTOS data in SEGGER
 	SEGGER_SYSVIEW_Conf();
@@ -91,8 +94,19 @@ void vLEDTaskFunction(void *params)
 {
 	while(1)
 	{
-		sprintf(usr_msg, "This is USART message from Task-1");
-		printmsg(usr_msg);
+		uint32_t currentNotificationValue = 0;
+
+		// Wait until the task receives any notification event from Button Task
+		if(xTaskNotifyWait(0,0,&currentNotificationValue,portMAX_DELAY) == pdTRUE)
+		{
+			HAL_GPIO_TogglePin(GPIOB, LED1_PIN);
+
+			sprintf(usr_msg, "Notification from Button Task. \n\r");
+			printmsg(usr_msg);
+			sprintf(usr_msg, "Button press count: %ld \n\r", currentNotificationValue);
+			printmsg(usr_msg);
+
+		}
 
 	}
 
@@ -103,9 +117,15 @@ void vButtonTaskFunction(void *params)
 {
 	while(1)
 	{
-		sprintf(usr_msg, "This is USART message from Task-2");
-		printmsg(usr_msg);
-
+		//Check the button
+		if( ! HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_2) )
+		{
+			//Button is pressed on the nucleo board
+			// Wait for 100ms to compensate for the button de-bouncing
+			delay(200);
+			//Send the notification to LED Task
+			xTaskNotify(xLEDTaskHandle,0x0, eIncrement);
+		}
 	}
 
 }
@@ -200,7 +220,24 @@ static void prvSetupButton(void)
 	HAL_GPIO_Init(GPIOC, &GpioButtonpin);
 
 }
+
 void printmsg(char *msg)
 {
 	HAL_USART_Transmit(&Usart1, (uint8_t *)msg, strlen(msg), 1);
+}
+
+void delay(uint32_t delay_ms)
+{
+	/*
+	 *It depends on the value configTICK_RATE_HZ.
+	 *If it is 1000 then each count is 1ms.
+	 *If it is 500 then each count is 2ms
+	 */
+	uint32_t current_tick_count = xTaskGetTickCount();
+
+	//This will convert the required amount of ticks to count depending on configTICK_RATE_HZ.
+	uint32_t delay_in_ticks = ( delay_ms * configTICK_RATE_HZ ) / 1000;
+
+	while( xTaskGetTickCount() < current_tick_count + delay_in_ticks);
+
 }
