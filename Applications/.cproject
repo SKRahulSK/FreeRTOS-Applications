@@ -79,15 +79,15 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.628646591.1122085043" name="Task_Notify.c" rcbsApplicability="disable" resourcePath="src/Task_Notify.c" toolsToInvoke="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779.782563864">
-						<tool id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779.782563864" name="MCU GCC Compiler" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779"/>
+					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.628646591.1853119237" name="TaskDeleteExample.c" rcbsApplicability="disable" resourcePath="src/TaskDeleteExample.c" toolsToInvoke="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779.671088453">
+						<tool id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779.671088453" name="MCU GCC Compiler" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779"/>
 					</fileInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Config"/>
 						<entry excluding="Src/stm32wbxx_hal_timebase_tim_template.c|Src/stm32wbxx_hal_timebase_rtc_wakeup_template.c|Src/stm32wbxx_hal_timebase_rtc_alarm_template.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="HAL_Driver"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Third-Party"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Utilities"/>
-						<entry excluding="Task_Notify.c|USARTExample.c|LEDButton.c|LED_Button.c|LED_Button_IT.c|stm32wbxx_it.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="TaskDeleteExample.c|Task_Notify.c|USARTExample.c|LEDButton.c|LED_Button.c|LED_Button_IT.c|stm32wbxx_it.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="startup"/>
 					</sourceEntries>
 				</configuration>
