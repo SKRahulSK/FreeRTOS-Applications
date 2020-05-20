@@ -78,7 +78,7 @@ void vTask2Function(void *params)
 
 		if(! HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_2) )
 		{
-			//Switch-oof the BLE LED
+			//Switch-off the BLUE LED
 			HAL_GPIO_WritePin(LED1_GPIO_PORT, LED1_PIN, GPIO_PIN_RESET);
 			//Toggle RED LED for 1s
 			HAL_GPIO_TogglePin(LED3_GPIO_PORT, LED3_PIN);
