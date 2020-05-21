@@ -55,7 +55,7 @@
 #define configUSE_PREEMPTION                     1		//Rahul - Make it 0 for cooperative scheduling
 #define configSUPPORT_STATIC_ALLOCATION          0
 #define configSUPPORT_DYNAMIC_ALLOCATION         1
-#define configUSE_IDLE_HOOK                      0
+#define configUSE_IDLE_HOOK                      1		//Rahul - I have set it to 1 for implementing Idle Hook example
 #define configUSE_TICK_HOOK                      0
 #define configCPU_CLOCK_HZ                       ( SystemCoreClock )
 #define configTICK_RATE_HZ                       ((TickType_t)1000)

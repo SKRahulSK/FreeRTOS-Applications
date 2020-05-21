@@ -79,15 +79,15 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.628646591.477988061" name="TaskPriority.c" rcbsApplicability="disable" resourcePath="src/TaskPriority.c" toolsToInvoke="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779.1491915231">
-						<tool id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779.1491915231" name="MCU GCC Compiler" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779"/>
+					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.628646591.212319203" name="TaskDelay.c" rcbsApplicability="disable" resourcePath="src/TaskDelay.c" toolsToInvoke="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779.1432093242">
+						<tool id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779.1432093242" name="MCU GCC Compiler" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779"/>
 					</fileInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Config"/>
 						<entry excluding="Src/stm32wbxx_hal_timebase_tim_template.c|Src/stm32wbxx_hal_timebase_rtc_wakeup_template.c|Src/stm32wbxx_hal_timebase_rtc_alarm_template.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="HAL_Driver"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Third-Party"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Utilities"/>
-						<entry excluding="TaskPriority.c|TaskDeleteExample.c|Task_Notify.c|USARTExample.c|LEDButton.c|LED_Button.c|LED_Button_IT.c|stm32wbxx_it.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="TaskDelay.c|TaskPriority.c|TaskDeleteExample.c|Task_Notify.c|USARTExample.c|LEDButton.c|LED_Button.c|LED_Button_IT.c|stm32wbxx_it.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="startup"/>
 					</sourceEntries>
 				</configuration>
