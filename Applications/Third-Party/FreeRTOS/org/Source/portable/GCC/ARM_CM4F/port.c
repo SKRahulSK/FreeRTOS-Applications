@@ -505,7 +505,6 @@ void xPortSysTickHandler( void )
 		else
 		{
 			traceISR_EXIT();
-			vTaskSwitchContext(); // Rahul - Calling this function only to record task switching when there is only 1 task running
 		}
 	}
 	portENABLE_INTERRUPTS();
