@@ -8,6 +8,11 @@
   ******************************************************************************
 */
 
+/*
+ * Example of USART communication.
+ * It also demonstrates taskYIELD() functionality.
+ * taskYIELD() forces the context switch by pending the PendSV bit.
+ */
 
 #include "stm32wbxx.h"
 #include "stm32wbxx_nucleo.h"
