@@ -12,6 +12,7 @@
  * Example of USART communication.
  * It also demonstrates taskYIELD() functionality.
  * taskYIELD() forces the context switch by pending the PendSV bit.
+ * This example also shows co-operative scheduling.
  */
 
 #include "stm32wbxx.h"
