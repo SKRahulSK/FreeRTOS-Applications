@@ -167,7 +167,7 @@ void printmsg(char *msg)
 	HAL_USART_Transmit(&Usart1, (uint8_t *)msg, strlen(msg), 1);
 }
 
-//Implement the Idel Hook function
+//Implement the Idle Hook function
 void vApplicationIdleHook()
 {
 	//Send the CPU to normal sleep mode

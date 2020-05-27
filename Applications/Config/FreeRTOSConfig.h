@@ -55,13 +55,13 @@
 #define configUSE_PREEMPTION                     1		//Rahul - Make it 0 for cooperative scheduling
 #define configSUPPORT_STATIC_ALLOCATION          0
 #define configSUPPORT_DYNAMIC_ALLOCATION         1
-#define configUSE_IDLE_HOOK                      1		//Rahul - I have set it to 1 for implementing Idle Hook example
+#define configUSE_IDLE_HOOK                      1		// Have to set it to 1 for implementing Idle Hook
 #define configUSE_TICK_HOOK                      0
 #define configCPU_CLOCK_HZ                       ( SystemCoreClock )
 #define configTICK_RATE_HZ                       ((TickType_t)1000)
 #define configMAX_PRIORITIES                     ( 7 )
 #define configMINIMAL_STACK_SIZE                 ((size_t)256)	//Rahul - I have changed uint16_t to size_t
-#define configTOTAL_HEAP_SIZE                    ((size_t)6144) //Rahul - I have changed 3072 to 6144 (i.e., 12KB to 24KB)
+#define configTOTAL_HEAP_SIZE                    ((size_t)12288) //Rahul - I have changed 3072 to 6144 (i.e., 12KB to 24KB)
 #define configMAX_TASK_NAME_LEN                  ( 16 )
 #define configUSE_TRACE_FACILITY                 1
 #define configUSE_16_BIT_TICKS                   0
@@ -76,7 +76,7 @@
 #define configMAX_CO_ROUTINE_PRIORITIES          ( 2 )
 
 /* Software timer definitions. */
-#define configUSE_TIMERS                         0			//Rahul - I have turned off this option
+#define configUSE_TIMERS                         1			//Rahul - Turn this on/off for some applications
 #define configTIMER_TASK_PRIORITY                ( 2 )
 #define configTIMER_QUEUE_LENGTH                 10
 #define configTIMER_TASK_STACK_DEPTH             256
