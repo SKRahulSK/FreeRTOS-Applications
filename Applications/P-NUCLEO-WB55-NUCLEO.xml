@@ -12,8 +12,8 @@
 <targetDefinitions>
   <board id="p-nucleo-wb55-nucleo">
     <name>P-NUCLEO-WB55-NUCLEO</name>
-    <dbgIF>SWD</dbgIF>
     <dbgIF>JTAG</dbgIF>
+    <dbgIF>SWD</dbgIF>
     <dbgDEV>ST-Link</dbgDEV>
     <mcuId>stm32wb55rgvx</mcuId>
   </board>
