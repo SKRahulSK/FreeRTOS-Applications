@@ -79,15 +79,15 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.628646591.621326003" name="QueueProcessing.c" rcbsApplicability="disable" resourcePath="src/QueueProcessing.c" toolsToInvoke="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779.1327377310">
-						<tool id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779.1327377310" name="MCU GCC Compiler" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779"/>
+					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.628646591.222382444" name="BinarySemaphore.c" rcbsApplicability="disable" resourcePath="src/BinarySemaphore.c" toolsToInvoke="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779.85195097">
+						<tool id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779.85195097" name="MCU GCC Compiler" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.458856779"/>
 					</fileInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Config"/>
 						<entry excluding="Src/stm32wbxx_hal_timebase_tim_template.c|Src/stm32wbxx_hal_timebase_rtc_wakeup_template.c|Src/stm32wbxx_hal_timebase_rtc_alarm_template.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="HAL_Driver"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Third-Party"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Utilities"/>
-						<entry excluding="QueueProcessing.c|UARTExample.c|USARTExample.c|LPUARTExample.c|UARTInterrupt.c|QueueExample.c|IdleHookPowerSaving.c|TaskDelay.c|TaskPriority.c|TaskDeleteExample.c|Task_Notify.c|LEDButton.c|LED_Button.c|LED_Button_IT.c|stm32wbxx_it.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="BinarySemaphore.c|QueueProcessing.c|UARTExample.c|USARTExample.c|LPUARTExample.c|UARTInterrupt.c|QueueExample.c|IdleHookPowerSaving.c|TaskDelay.c|TaskPriority.c|TaskDeleteExample.c|Task_Notify.c|LEDButton.c|LED_Button.c|LED_Button_IT.c|stm32wbxx_it.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="startup"/>
 					</sourceEntries>
 				</configuration>
