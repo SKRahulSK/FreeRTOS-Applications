@@ -1,19 +1,11 @@
-/**
-  ******************************************************************************
-  * @file    main.c
-  * @author  Rahul
-  * @version V1.0
-  * @date    06-May-2020
-  * @brief   Default main function.
-  ******************************************************************************
-*/
-
 /*
- * Example of USART communication.
- * It also demonstrates taskYIELD() functionality.
- * taskYIELD() forces the context switch by pending the PendSV bit.
- * This example also shows co-operative scheduling. For this configuration of PREEMPTION should be set to 0.
+ * UARTExample.c
+ *
+ *  Created on: 25-May-2020
+ *      Author: Rahul
  */
+
+
 
 #include "stm32wbxx.h"
 #include "stm32wbxx_nucleo.h"
@@ -59,9 +51,9 @@ uint8_t USART_ACCESS_T2 = AVAILABLE;
 
 //Variables related Peripherals
 GPIO_InitTypeDef GpioUARTpins;
-USART_InitTypeDef Usart1Init;
-USART_HandleTypeDef Usart1;
 GPIO_InitTypeDef GpioLEDpin;
+UART_HandleTypeDef Uart1;
+UART_InitTypeDef Uart1Init;
 
 
 void delay()
@@ -72,50 +64,27 @@ void delay()
 
 int main(void)
 {
-
-#ifndef USE_SEMIHOSTING
-	initialise_monitor_handles();
-#endif
-
 	// Enable the DWT Cycle Count Register (SEGGER Settings)
 	DWT->CTRL |= (1 << 0);
 
 	// Private function defined to setup the Hardware
 	prvSetupHardware();
 
-	//printf("This is USART testing \n");
-
 	sprintf(usr_msg, "This is the start of the hello world application \r\n");
 	printmsg(usr_msg);
-
-	//printf("Msg using USART is sent \n");
 
 	// Start recording the FreeRTOS data in SEGGER
 	SEGGER_SYSVIEW_Conf();
 	SEGGER_SYSVIEW_Start();
 
 	//3. Create Tasks: Task1 and Task2
-	//printf("Creating Task-1 \n");
-	xTaskCreate(vTask1Function,
-			"Task-1",
-			configMINIMAL_STACK_SIZE,
-			NULL,
-			2,
-			&xTask1Handle);
 
-	//printf("Creating Task-2 \n");
-	xTaskCreate(vTask2Function,
-			"Task-2",
-			configMINIMAL_STACK_SIZE,
-			NULL,
-			2,
-			&xTask2Handle);
+	xTaskCreate(vTask1Function, "Task-1", configMINIMAL_STACK_SIZE, NULL, 2, &xTask1Handle);
 
+	xTaskCreate(vTask2Function, "Task-2", configMINIMAL_STACK_SIZE, NULL, 2, &xTask2Handle);
 
 	//4. Schedule the tasks
-	//printf("Scheduling the tasks created \n");
 	vTaskStartScheduler();
-	//printf("Tasks are successfully scheduled \n");
 
 	for(;;);
 
@@ -180,8 +149,6 @@ void vTask2Function(void *params)
 
 static void prvSetupUSART(void)
 {
-	//printf("USART1 Initialization: \n");
-
 	//1. Enable the UART1 and GPIOB Peripheral Clocks
 	__HAL_RCC_USART1_CLK_ENABLE();
 	__HAL_RCC_GPIOB_CLK_ENABLE();
@@ -201,25 +168,23 @@ static void prvSetupUSART(void)
 	//3. Configure and initialize UART parameters
 
 	//Zeroing each and every member element of the structure.
-	memset(&Usart1Init, 0, sizeof(Usart1Init));
-	memset(&Usart1, 0, sizeof(Usart1));
+	memset(&Uart1Init, 0, sizeof(Uart1Init));
+	memset(&Uart1, 0, sizeof(Uart1));
 
-	Usart1Init.BaudRate = 115200;
-	Usart1Init.WordLength = USART_WORDLENGTH_8B;
-	Usart1Init.StopBits = USART_STOPBITS_1;
-	Usart1Init.Parity = USART_PARITY_NONE;
-	Usart1Init.Mode = USART_MODE_TX_RX;
-	Usart1Init.CLKPolarity = USART_POLARITY_LOW;
-	Usart1Init.CLKPhase = USART_PHASE_1EDGE;
-	Usart1Init.CLKLastBit = USART_LASTBIT_DISABLE;
-	Usart1Init.ClockPrescaler = USART_PRESCALER_DIV1;
+	//UART Initialization
+	Uart1Init.BaudRate = 115200;
+	Uart1Init.WordLength = UART_WORDLENGTH_8B;
+	Uart1Init.HwFlowCtl = UART_HWCONTROL_NONE;
+	Uart1Init.Mode = UART_MODE_TX_RX;
+	Uart1Init.Parity = UART_PARITY_NONE;
+	Uart1Init.StopBits = UART_STOPBITS_1;
 
-	Usart1.Instance = USART1;
-	Usart1.Init = Usart1Init;
+	Uart1.Init = Uart1Init;
+	Uart1.Instance = USART1;
 
-	uint16_t USARTSetUpResult = HAL_USART_Init(&Usart1);
+	uint16_t UARTSetUpResult = HAL_UART_Init(&Uart1);
 
-	if(USARTSetUpResult == HAL_ERROR)
+	if(UARTSetUpResult == HAL_ERROR)
 	{
 		//printf("USART Initialization was not successful \n");
 	}
@@ -253,5 +218,6 @@ static void prvSetupHardware(void)
 
 void printmsg(char *msg)
 {
-	HAL_USART_Transmit(&Usart1, (uint8_t *)msg, strlen(msg), 1);
+	//HAL_USART_Transmit(&Usart1, (uint8_t *)msg, strlen(msg), 1);
+	HAL_UART_Transmit(&Uart1, (uint8_t *)msg, strlen(msg), 1);
 }

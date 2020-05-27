@@ -791,6 +791,7 @@ HAL_StatusTypeDef HAL_USART_Transmit(USART_HandleTypeDef *husart, uint8_t *pTxDa
       else
       {
         husart->Instance->TDR = (uint8_t)(*ptxdata8bits & 0xFFU);
+        //__HAL_USART_CLEAR_FLAG(husart,USART_FLAG_RXNE); //Rahul - I have added this line to clear RXNE bit which is being set by the above line.
         ptxdata8bits++;
       }
 
