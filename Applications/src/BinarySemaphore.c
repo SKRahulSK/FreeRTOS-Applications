@@ -5,6 +5,10 @@
  *      Author: Rahul
  */
 
+/*
+ * This is a very basic binary semaphore example.
+ * It should be improved to make it more dependent on semaphore rather that being dependent of Queue
+ */
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -65,7 +69,7 @@ int main()
 		xTaskCreate(vManagerTaskFunction, "Manager-Task", configMINIMAL_STACK_SIZE, NULL, 2, &xManagerTask);
 
 		//Create Employee Task.
-		xTaskCreate(vEmployeeTaskFunction, "Employee-Task", configMINIMAL_STACK_SIZE, NULL, 1, &xEmployeeTask);
+		xTaskCreate(vEmployeeTaskFunction, "Employee-Task", configMINIMAL_STACK_SIZE, NULL, 2, &xEmployeeTask);
 
 		//Schedule the tasks
 		vTaskStartScheduler();
@@ -129,27 +133,28 @@ void vEmployeeTaskFunction (void *params)
 	while(1)
 	{
 		//Take the Semaphore
-		xSemaphoreTake(xWorkSemaphore, 0);
-
-		//Receive the TaskID from the Queue
-		xReceiveStatus = xQueueReceive(xWorkQueue, &ulWorkTaskID, 0);
-
-		if(xReceiveStatus == pdPASS)
+		if(xSemaphoreTake(xWorkSemaphore, 0))
 		{
-			//Received the TaskID
-			sprintf(UsrMsg, "Employee Task: Working on Task ID - %d \r\n", ulWorkTaskID);
-			printmsg(UsrMsg);
-			//Block for some amount of time to work on the given task
-			vTaskDelay(ulWorkTaskID);
-		}
-		else
-		{
-			//Nothing is received
-			sprintf(UsrMsg, "No Task is received to work on. \r\n");
-			printmsg(UsrMsg);
+
+			//Receive the TaskID from the Queue
+			xReceiveStatus = xQueueReceive(xWorkQueue, &ulWorkTaskID, 0);
+
+			if(xReceiveStatus == pdPASS)
+			{
+				//Received the TaskID
+				sprintf(UsrMsg, "Employee Task: Working on Task ID - %d \r\n", ulWorkTaskID);
+				printmsg(UsrMsg);
+				//Block for some amount of time to work on the given task
+				vTaskDelay(ulWorkTaskID);
+			}
+			else
+			{
+				//Nothing is received
+				sprintf(UsrMsg, "No Task is received to work on. \r\n");
+				printmsg(UsrMsg);
+			}
 		}
 	}
-
 }
 
 
