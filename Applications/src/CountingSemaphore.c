@@ -198,8 +198,6 @@ static void prvSetupUART(void)
 		//printf("USART Initialization was not successful \n");
 	}
 
-
-
 }
 
 void printmsg(char *msg)
